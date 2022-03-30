@@ -4,12 +4,20 @@ echo "welcome";
 PRESENT=1;
 PART_TIME=2;
 WAGE_PER_HOUR=20;
-MaX_Working_Day=20;
-totalSalary=0;
-for ((day=0;day<$MaX_Working_Day;day++))
-do
-	isPresent=$((RANDOM%3));
+MAX_WORKING_DAY=20
+MAX_WORKING_HOUR=40;
+totalWorkingHour=0;
+day=0;
 
+while [[ $day -lt $MAX_WORKING_DAY && $totalWorkingHour -lt $MAX_WORKING_HOUR ]]
+
+do
+	if [ $((totalWorkingHour + 4)) -ge $MAX_WORKING_HOUR ]
+then 
+	isprsent=$PART_TIME;
+else	
+	isPresent=$((RANDOM%3));
+fi
 	case $isPresent in
 
 		$PRESENT)
@@ -28,10 +36,18 @@ do
 	;;
 
 esac;
+	dailywage=$((workingHour * WAGE_PER_HOUR))
+	totalWorkingHour=$((totalWorkingHour+workingHour));
+	totalSalary=$((totalsalary+dailywage));
 
-	dailyWage=$((workingHour * WAGE_PER_HOUR));
-	totalsalary=$((totalsalary+dailyWage));
+	((day++));
 done
-echo "Employee daily wage : $"$dailyWage "USD";
-echo "Employee monthly wage : $"$totalsalary"USD";
+		
 
+	echo "Employee monthly wage :  $totalsalary USD";
+  echo "Employee daily wage :  $dailywage USD";
+	totalSalary=$((totalWorkingHour*WAGE_PER_HOUR));
+
+
+echo "Total working hour : $totalWorkingHour Hr";
+echo "Total working day : $day";
