@@ -4,7 +4,7 @@ echo "welcome";
 PRESENT=1;
 PART_TIME=2;
 WAGE_PER_HOUR=20;
-MAX_WORKING_DAY=20
+MAX_WORKING_DAY=20;
 MAX_WORKING_HOUR=40;
 totalWorkingHour=0;
 day=0;
